@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <style>
+        /* Estilos básicos para la página */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        /* Contenedor principal del perfil */
+        .profile-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* Cabecera: "<- Mi Perfil" */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #00796b; /* Un verde similar al de Siglo 21 */
+            color: white;
+            font-size: 1.2em;
+        }
+        .profile-header a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        /* Contenido principal */
+        .profile-body {
+            padding: 25px;
+        }
+        h2 {
+            font-weight: 500;
+            color: #00796b;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        /* Sección del avatar */
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .avatar-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #00796b;
+            margin-right: 20px;
+        }
+        .user-info span {
+            display: block;
+            line-height: 1.5;
+        }
+        .user-info .label {
+            font-weight: bold;
+            color: #555;
+        }
+        /* Estilo para los campos del formulario */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #00796b;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Importante para que el padding no afecte el ancho */
+            background-color: #f9f9f9;
+        }
+        /* Para campos en la misma línea */
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <a href="{{ url_for('pagina_principal') }}">&larr;</a>
+        <span>Mi Perfil</span>
+    </div>
+    <div class="profile-body">
+        <h2>Datos Personales</h2>
+        
+        <div class="avatar-section">
+            <img src="{{ url_for('static', filename='carafeliz.png') }}" alt="Avatar">
+            <div class="user-info">
+                <div><span class="label">Nombre</span> {{ user.nombre }}</div>
+                <div><span class="label">Apellido</span> {{ user.apellido }}</div>
+                <div><span class="label">Email institucional</span> {{ user.email_institucional }}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email_personal">Email personal</label>
+            <input type="email" id="email_personal" value="{{ user.email_personal }}" readonly>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="tel_celular">Teléfono celular</label>
+                <input type="text" id="tel_celular" value="{{ user.tel_celular }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="tel_fijo">Teléfono fijo</label>
+                <input type="text" id="tel_fijo" value="{{ user.tel_fijo }}" readonly>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex: 2;">
+                <label for="calle">Calle</label>
+                <input type="text" id="calle" value="{{ user.calle }}" readonly>
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label for="numero">Número</label>
+                <input type="text" id="numero" value="{{ user.numero }}" readonly>
+            </div>
+        </div>
+
+        </div>
+</div>
+
+</body>
+</html>
